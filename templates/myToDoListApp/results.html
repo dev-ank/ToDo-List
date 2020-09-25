@@ -1,0 +1,40 @@
+{% extends "base.html" %} 
+
+{% block content %}
+<div class=container>
+	<form action="{% url 'post_home' %}" method="post" enctype='multipart/form-data'>
+		
+		<div class="form-group">
+			<br/>
+		  <br/>
+		  <center><h2>Enter your ToDo list and never forget your tasks!</h2></center>
+		  <br/>
+		  <br/>
+		  <input type="text" class="form-control" placeholder="Add a ToDo..." id="exampleInputEmail1" aria-describedby="emailHelp" name="input">
+		</div>
+		<center><button type="submit" class="btn btn-primary">Submit</button></center>
+	</form>
+</div>
+<br/>
+<br/>
+<center><p class="subtitle">Your Todo List</p></center>
+<br/>
+
+
+<div class=container >
+	{% for t in datas %}
+	<center><ul class="list-group col-sm-4">
+		<li class="list-group-item ">{{ t.text }}
+			<div class="float-right">
+				<form action="{% url 'delete_post' todoid=t.id %}" action="post">
+				  <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+				</form>
+			  </div>
+		</li>
+		
+	</ul></center>
+	
+	{% endfor %}
+</div>
+
+{% endblock content %}
